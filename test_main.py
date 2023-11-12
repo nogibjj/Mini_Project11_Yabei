@@ -1,10 +1,29 @@
-"""
-Test goes here
+import requests
+import os
+from dotenv import load_dotenv
 
-"""
+# Initialize environment variables
+load_dotenv()
+databricks_host = os.getenv("SERVER_HOSTNAME")
+bearer_token = os.getenv("ACCESS_TOKEN")
+dbfs_path = "dbfs:/FileStore/mini_project11"
+api_endpoint = f"https://{databricks_host}/api/2.0"
 
-from mylib.calculator import add
+# Function to validate the existence of a path in DBFS
+def validate_dbfs_path(target_path, http_headers): 
+    try:
+        dbfs_response = requests.get(f"{api_endpoint}/dbfs/get-status?path={target_path}", headers=http_headers)
+        dbfs_response.raise_for_status()
+        return 'path' in dbfs_response.json()
+    except Exception as error:
+        print(f"Encountered error while verifying DBFS path: {error}")
+        return False
 
+# Function to test the functionality of Databricks configuration
+def run_databricks_test():
+    auth_headers = {'Authorization': f'Bearer {bearer_token}'}
+    path_exists = validate_dbfs_path(dbfs_path, auth_headers)
+    assert path_exists, "DBFS path does not exist or cannot be accessed"
 
-def test_add():
-    assert add(1, 2) == 3
+if __name__ == "__main__":
+    run_databricks_test()

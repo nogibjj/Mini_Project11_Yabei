@@ -23,3 +23,6 @@ deploy:
 	#deploy goes here
 		
 all: install lint test format deploy
+
+job:
+	python jobrun.py
