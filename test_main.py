@@ -10,9 +10,9 @@ dbfs_path = "dbfs:/FileStore/mini_project11"
 api_endpoint = f"https://{databricks_host}/api/2.0"
 
 # Function to validate the existence of a path in DBFS
-def test_validate_dbfs_path(target_path, http_headers): 
+def test_validate_dbfs_path(path, http_headers): 
     try:
-        dbfs_response = requests.get(f"{api_endpoint}/dbfs/get-status?path={target_path}", headers=http_headers)
+        dbfs_response = requests.get(f"{api_endpoint}/dbfs/get-status?path={path}", headers=http_headers)
         dbfs_response.raise_for_status()
         return 'path' in dbfs_response.json()
     except Exception as error:
