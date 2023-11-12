@@ -1,8 +1,8 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import monotonically_increasing_id
 
-def transform_load(data_path="dbfs:/FileStore/mini_project11/event_times.csv", 
-                        data_path2="dbfs:/FileStore/mini_project11/serve_times.csv"):
+def transform_load(data_path="dbfs: /FileStore/tables/mini11/fandango_score_comparison-1.csv", 
+                        data_path2="dbfs:/FileStore/tables/mini11/fandango_scrape.csv"):
     """
     Loads, transforms, and stores CSV datasets using Spark.
     
