@@ -1,37 +1,45 @@
-[![CI](https://github.com/nogibjj/python-ruff-template/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/python-ruff-template/actions/workflows/cicd.yml)
-## Template for Python projects with RUFF linter
+# Mini Project 11
 
-![1 15_rust_built_python_tools](https://github.com/nogibjj/python-ruff-template/assets/58792/db5f7bda-a977-4c67-acbe-a70fe034fbdf)
+## Overview
+"**Data Processing Pipeline**" is designed to create an effective data pipeline using Databricks, focusing on extracting, transforming, and visualizing movie rating data from Fandango. The project incorporates Python libraries and Databricks tools to facilitate efficient data handling and analysis.
 
+### Key Components
 
+#### Data Extraction:
+- Retrieves movie rating data from Fandango via HTTP requests.
+- Stores the retrieved data in the Databricks FileStore for further processing.
 
-1. First thing to do on launch is to open a new shell and verify virtualenv is sourced.
+#### Databricks Environment Configuration:
+- Sets up the Databricks environment using environment variables for authentication (e.g., `SERVER_HOSTNAME` and `ACCESS_TOKEN`).
 
-Things included are:
+#### Data Transformation and Storage:
+- Converts the raw data into a Spark dataframe.
+- Transforms the dataframe into a Delta Lake Table, stored in the Databricks environment.
 
-* `Makefile`
+#### Data Analysis and Visualization:
+- Performs data analysis using Spark SQL on the transformed data.
+- Visualizes the analysis results through various data visualization techniques.
 
-* `Pytest`
+#### File Path Validation for Testing:
+- Includes a method to check the existence of file paths in the Databricks FileStore.
+- Validates the connection to the Databricks API as a part of the pipeline's testing process.
 
-* `pandas`
+#### Automated Trigger via GitHub Push:
+- Implements an automated trigger with the Databricks API to start a pipeline run in response to a push in the GitHub repository.
 
-* `Ruff`:  
+### Preparation Steps:
+1. Create a Databricks workspace on a cloud platform like Azure.
+2. Integrate your GitHub account with the Databricks Workspace.
+3. Configure a global initialization script in the Databricks cluster for environment variables.
+4. Establish a Databricks cluster that supports PySpark.
+5. Clone the project repository into the Databricks workspace.
+6. Set up a Databricks job to automate the pipeline execution.
 
-Run `make lint` which runs `ruff check`.  You can find out more info on [Ruff here](https://github.com/astral-sh/ruff).
+### Pipeline Components:
+- Data Source Extraction Script: `mylib/extract.py`
+- Data Transformation and Load Script: `mylib/transform_load.py`
+- Data Query and Visualization Script: `mylib/query.py`
 
-* `Dockerfile`
-
-* `GitHub copilot`
-
-* `jupyter` and `ipython` 
-
-* A base set of libraries for devops and web
-
-* `githubactions`
-
-## References
-
-![1 1-function-essence-of-programming](https://github.com/nogibjj/python-ruff-template/assets/58792/f7f33cd3-cff5-4014-98ea-09b6a29c7557)
-
-
+## Requirements
+The project involves developing a data pipeline in Databricks, incorporating at least one data source and one data sink.
 
