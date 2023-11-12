@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 hostname = os.getenv("SERVER_HOSTNAME")
 bearer_token = os.getenv("ACCESS_TOKEN")
-DBFS_PATH = "dbfs:/FileStore/mini_project11"
+DBFS_PATH = "dbfs:/FileStore/tables/mini11"
 auth_headers = {'Authorization': f'Bearer {bearer_token}'}
 base_url = f"https://{hostname}/api/2.0"
 
