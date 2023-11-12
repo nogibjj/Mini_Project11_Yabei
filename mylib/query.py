@@ -45,7 +45,7 @@ def sql_query():
 
 # Function to visualize the query results
 def visualize_data():
-    data_frame = execute_sql_query()
+    data_frame = sql_query()
     row_count = data_frame.count()
     if row_count > 0:
         print(f"Data validation successful. Found {row_count} rows.")
