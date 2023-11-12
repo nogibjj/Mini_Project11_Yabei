@@ -57,7 +57,7 @@ def upload_file_from_web(source_url, target_dbfs_path, overwrite_flag, headers):
         print(f"Failed to download from {source_url}. Error: {web_response.status_code}")
 
 
-def data_extract(
+def extract(
         source_url1="https://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_score_comparison.csv",
         source_url2="hhttps://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_scrape.csv",
         target_path1=DBFS_PATH+"/fandango_score_comparison.csv",
@@ -73,4 +73,4 @@ def data_extract(
 
 
 if __name__ == "__main__":
-    data_extract()
+    extract()
