@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 databricks_host = os.getenv("SERVER_HOSTNAME")
 bearer_token = os.getenv("ACCESS_TOKEN")
-dbfs_path = "dbfs:/FileStore/tables/mini11"
+FILESTORE_PATH = "dbfs:/FileStore/tables/mini11"
 api_endpoint = f"https://{databricks_host}/api/2.0"
 
 # Function to validate the existence of a path in DBFS
@@ -22,7 +22,7 @@ def test_validate_dbfs_path(path, http_headers):
 # Function to test the functionality of Databricks configuration
 def test_run_databricks():
     auth_headers = {'Authorization': f'Bearer {bearer_token}'}
-    path_exists = test_validate_dbfs_path(dbfs_path, auth_headers)
+    path_exists = test_validate_dbfs_path(FILESTORE_PATH, auth_headers)
     assert path_exists, "DBFS path does not exist or cannot be accessed"
 
 if __name__ == "__main__":
