@@ -1,25 +1,27 @@
 SELECT 
-    movie.FILM, 
-    movie.STARS, 
-    movie.RATING, 
-    movie.VOTES, 
-    ratings.RottenTomatoes, 
-    ratings.Metacritic, 
-    ratings.IMDB, 
-    ratings.Fandango_Stars, 
-    COUNT(*) as total_rows
+    m.FILM, 
+    m.STARS, 
+    m.RATING, 
+    m.VOTES, 
+    r.RottenTomatoes, 
+    r.Metacritic, 
+    r.IMDB, 
+    r.Fandango_Stars, 
+    COUNT(*) as total_entries 
 FROM 
-    fandango_scrape movie
+    fandango_scrape_delta_table m 
 JOIN 
-    fandango_score_comparison ratings ON movie.FILM = ratings.FILM
+    fandango_score_delta_table r ON m.FILM = r.FILM 
 GROUP BY 
-    movie.FILM, 
-    movie.STARS, 
-    movie.RATING, 
-    movie.VOTES,
-    ratings.RottenTomatoes, 
-    ratings.Metacritic, 
-    ratings.IMDB, 
-    ratings.Fandango_Stars
+    m.FILM, 
+    m.STARS, 
+    m.RATING, 
+    m.VOTES, 
+    r.RottenTomatoes, 
+    r.Metacritic, 
+    r.IMDB, 
+    r.Fandango_Stars 
 ORDER BY 
-    movie.FILM, ratings.RottenTomatoes DESC, movie.VOTES;
+    m.FILM, 
+    r.RottenTomatoes DESC, 
+    m.VOTES;

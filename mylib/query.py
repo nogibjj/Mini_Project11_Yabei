@@ -12,32 +12,32 @@ def sql_query():
     """
     spark_session = SparkSession.builder.appName("DataQuerySession").getOrCreate()
     sql_query = (
-    "SELECT "
-    "movie.FILM, "
-    "movie.STARS, "
-    "movie.RATING, "
-    "movie.VOTES, "
-    "ratings.RottenTomatoes, "
-    "ratings.Metacritic, "
-    "ratings.IMDB, "
-    "ratings.Fandango_Stars, "
-    "COUNT(*) as total_entries "
-    "FROM fandango_scrape movie "
-    "JOIN fandango_score_comparison ratings ON movie.FILM = ratings.FILM "
-    "GROUP BY "
-    "movie.FILM, "
-    "movie.STARS, "
-    "movie.RATING, "
-    "movie.VOTES, "
-    "ratings.RottenTomatoes, "
-    "ratings.Metacritic, "
-    "ratings.IMDB, "
-    "ratings.Fandango_Stars "
-    "ORDER BY "
-    "movie.FILM, "
-    "ratings.RottenTomatoes DESC, "
-    "movie.VOTES"
-)
+        "SELECT "
+        "m.FILM, "
+        "m.STARS, "
+        "m.RATING, "
+        "m.VOTES, "
+        "r.RottenTomatoes, "
+        "r.Metacritic, "
+        "r.IMDB, "
+        "r.Fandango_Stars, "
+        "COUNT(*) as total_entries "
+        "FROM fandango_scrape_delta_table m "
+        "JOIN fandango_score_delta_table r ON m.FILM = r.FILM "
+        "GROUP BY "
+        "m.FILM, "
+        "m.STARS, "
+        "m.RATING, "
+        "m.VOTES, "
+        "r.RottenTomatoes, "
+        "r.Metacritic, "
+        "r.IMDB, "
+        "r.Fandango_Stars "
+        "ORDER BY "
+        "m.FILM, "
+        "r.RottenTomatoes DESC, "
+        "m.VOTES"
+    )
 
     result_set = spark_session.sql(sql_query)
     return result_set
@@ -52,33 +52,33 @@ def visualize_data():
     else:
         print("Data unavailable. Further investigation required.")
 
-    plt.figure(figsize=(12, 7))
-    data_frame.select("seconds_before_next_point", "server").toPandas().boxplot(
-        column="seconds_before_next_point", by="server"
-    )
-    plt.xlabel("Server Identity")
-    plt.ylabel("Timing (Seconds)")
-    plt.title("Distribution of Seconds Before Next Point Across Servers")
-    plt.xticks(rotation=25)
-    plt.tight_layout()
-    plt.show("server_distribution.png")
+    # plt.figure(figsize=(12, 7))
+    # data_frame.select("VOTES", "FILM").toPandas().boxplot(
+    #     column="VOTES", by="FILM"
+    # )
+    # plt.xlabel("Film Title")
+    # plt.ylabel("Number of Votes")
+    # plt.title("Distribution of Votes Across Films")
+    # plt.xticks(rotation=25)
+    # plt.tight_layout()
+    # plt.show("film_votes_distribution.png")
 
-    avg_seconds_surface = data_frame.groupBy("surface").avg(
-        "seconds_before_next_point"
+    avg_seconds_surface = data_frame.groupBy("RATING").avg(
+        "VOTES"
     )
     df_avg_surface = avg_seconds_surface.toPandas()
 
     plt.figure(figsize=(10, 5))
     plt.bar(
-        df_avg_surface["surface"],
-        df_avg_surface["avg(seconds_before_next_point)"],
+        df_avg_surface["RATING"],
+        df_avg_surface["avg(VOTES)"],
         color="green"
     )
-    plt.xlabel("Surface Type")
-    plt.ylabel("Average Time (Seconds)")
-    plt.title("Average Time Before Next Point by Surface Type")
+    plt.xlabel("Rating Type")
+    plt.ylabel("Average Number of Votes")
+    plt.title("Average Votes by Rating Type")
     plt.xticks(rotation=30)
-    plt.show("surface_analysis.png")
+    plt.show("rating_votes_analysis.png")
 
 
 if __name__ == "__main__":
