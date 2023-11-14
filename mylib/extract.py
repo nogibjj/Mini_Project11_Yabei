@@ -59,7 +59,7 @@ def upload_file_from_web(source_url, target_dbfs_path, overwrite_flag, headers):
 
 def extract(
         source_url1="https://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_score_comparison.csv",
-        source_url2="hhttps://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_scrape.csv",
+        source_url2="https://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_scrape.csv",
         target_path1=DBFS_PATH+"/fandango_score_comparison.csv",
         target_path2=DBFS_PATH+"/fandango_scrape.csv",
         destination_directory=DBFS_PATH,
