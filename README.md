@@ -40,12 +40,16 @@
 - Data Transformation and Load Script: `mylib/transform_load.py`
 - Data Query and Visualization Script: `mylib/query.py`
 
-## Requirements
+## Requirement
 The project involves developing a data pipeline in Databricks, incorporating at least one data source and one data sink.
 
+<<<<<<< Updated upstream
 ## Job pipeline
 ![etl](https://github.com/nogibjj/Mini_Project11_Yabei/assets/143656459/57c258ce-ef7f-4970-9d8c-6ec3aeca6e22)
 
 ## visualization
 ![result](https://github.com/nogibjj/Mini_Project11_Yabei/assets/143656459/ce851b21-99c2-44d3-8e18-5c30175aaee0)
+=======
+
+>>>>>>> Stashed changes
 
