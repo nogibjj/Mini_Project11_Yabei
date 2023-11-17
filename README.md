@@ -49,7 +49,7 @@ The project involves developing a data pipeline in Databricks, incorporating at 
 
 ## visualization
 ![result](https://github.com/nogibjj/Mini_Project11_Yabei/assets/143656459/ce851b21-99c2-44d3-8e18-5c30175aaee0)
-=======
 
->>>>>>> Stashed changes
+
+
 
